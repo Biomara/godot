@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://biuys7d7rf5g2"]
+
+[ext_resource type="Script" path="res://Mob.gd" id="1_omsd7"]
+[ext_resource type="Texture2D" uid="uid://crp8btiawovft" path="res://art/enemyFlyingAlt_2.png" id="2_5l0br"]
+[ext_resource type="Texture2D" uid="uid://jhiktxq6shtv" path="res://art/enemyFlyingAlt_1.png" id="3_q8alc"]
+[ext_resource type="Texture2D" uid="uid://c1nta6i5mf1mc" path="res://art/enemySwimming_1.png" id="4_sure4"]
+[ext_resource type="Texture2D" uid="uid://boff8ppergft4" path="res://art/enemySwimming_2.png" id="5_ieolo"]
+[ext_resource type="Texture2D" uid="uid://o44d7g832qgv" path="res://art/enemyWalking_1.png" id="6_pshth"]
+[ext_resource type="Texture2D" uid="uid://ghhqxjf8begf" path="res://art/enemyWalking_2.png" id="7_gwkw7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o324c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5l0br")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q8alc")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_sure4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ieolo")
+}],
+"loop": true,
+"name": &"swin",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_pshth")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_gwkw7")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yfoa6"]
+radius = 39.0
+height = 98.0
+
+[node name="mob" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_omsd7")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_o324c")
+animation = &"walk"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yfoa6")
